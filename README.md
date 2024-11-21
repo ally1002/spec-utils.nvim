@@ -21,8 +21,7 @@
 ## Features
 
 - **Utils**: General-purpose utility functions.  
-- **Matcher**: Tools for custom validations and matching logic.  
-- **Formatter**: Reusable formatting tools.  
+- **File**: General-purpose to handle the path functions.  
 - **Test Support**: Compatible with [plenary.nvim](https://github.com/nvim-lua/plenary.nvim).  
 
 ## Installation
