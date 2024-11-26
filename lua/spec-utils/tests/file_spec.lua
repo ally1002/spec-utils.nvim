@@ -15,12 +15,13 @@ describe("spec-utils.path", function()
 	end)
 
 	describe("#copy_test_file", function()
-		it("save the test file path to the clipboard", function()
-			local test_path = "src/components/example.js"
-			local expected_test_path = "src/components/example.spec.js"
-			File.copy_test_file(test_path)
-			local copied_path = vim.fn.getreg("+")
-			assert.equals(copied_path, expected_test_path)
+		describe("when the current_path is in the spec folder", function()
+			it("save the current file path to the clipboard", function()
+				local current_path = "src/components/example.spec.js"
+				File.copy_test_file(current_path)
+				local copied_path = vim.fn.getreg("+")
+				assert.equals(copied_path, current_path)
+			end)
 		end)
 	end)
 
@@ -62,11 +63,21 @@ describe("spec-utils.path", function()
 	end)
 
 	describe("#rails_test_file", function()
-		it("return the rails test file path", function()
-			local path = "app/models/user.rb"
-			local expected_test_path = "spec/models/user_spec.rb"
-			local test_path = File.rails_test_file(path)
-			assert.equals(test_path, expected_test_path)
+		describe("when the current_path does not match 'spec'", function()
+			it("return the rails test file path", function()
+				local path = "app/models/user.rb"
+				local expected_test_path = "spec/models/user_spec.rb"
+				local test_path = File.rails_test_file(path)
+				assert.equals(test_path, expected_test_path)
+			end)
+		end)
+
+		describe("when the current_path matches 'spec'", function()
+			it("return the rails file path", function()
+				local path = "spec/models/user_spec.rb"
+				local test_path = File.rails_test_file(path)
+				assert.equals(test_path, path)
+			end)
 		end)
 	end)
 
@@ -80,11 +91,21 @@ describe("spec-utils.path", function()
 	end)
 
 	describe("#generic_test_file", function()
-		it("return the generic test file path", function()
-			local path = "src/components/example.js"
-			local expected_test_path = "src/components/example.spec.js"
-			local test_path = File.generic_test_file(path, "js")
-			assert.equals(test_path, expected_test_path)
+		describe("when the current_path does not match 'spec'", function()
+			it("return the generic test file path", function()
+				local path = "src/components/example.js"
+				local expected_test_path = "src/components/example.spec.js"
+				local test_path = File.generic_test_file(path, "js")
+				assert.equals(test_path, expected_test_path)
+			end)
+		end)
+
+		describe("when the current_path matches 'spec'", function()
+			it("return the generic file path", function()
+				local path = "src/components/example.spec.js"
+				local test_path = File.generic_test_file(path, "js")
+				assert.equals(test_path, path)
+			end)
 		end)
 	end)
 end)

@@ -57,7 +57,11 @@ end
 
 ---@param path string
 function M.rails_test_file(path)
-	return path:gsub("^app/", "spec/"):gsub("%.rb$", "_spec.rb")
+	if path:match("spec") then
+		return path
+	else
+		return path:gsub("^app/", "spec/"):gsub("%.rb$", "_spec.rb")
+	end
 end
 
 ---@param path string
@@ -69,7 +73,11 @@ end
 ---@param path string
 ---@param filetype string
 function M.generic_test_file(path, filetype)
-	return path:gsub("%." .. filetype .. "$", ".spec." .. filetype)
+	if path:match("spec") then
+		return path
+	else
+		return path:gsub("%." .. filetype .. "$", ".spec." .. filetype)
+	end
 end
 
 return M
