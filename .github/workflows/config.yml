@@ -20,9 +20,9 @@ jobs:
 
       # Step 2: Install Neovim using a GitHub Action
       - name: Set up Neovim
-        uses: neovim/setup-neovim@v1
+      - uses: rhysd/action-setup-vim@v1
         with:
-          neovim-version: stable
+          neovim: true
 
       # Step 3: Install plugin dependencies
       - name: Install plugin dependencies
