@@ -20,7 +20,7 @@ jobs:
 
       # Step 2: Install Neovim using a GitHub Action
       - name: Set up Neovim
-        uses: rhysd/setup-neovim@v1
+        uses: neovim/setup-neovim@v1
         with:
           neovim-version: stable
 
