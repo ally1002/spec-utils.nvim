@@ -1,7 +1,5 @@
 local M = {}
 
-function M.setup()
-  print "setup spec-utils"
-end
+function M.setup() end
 
 return M
