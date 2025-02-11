@@ -1,7 +1,7 @@
 local M = {}
 
-function M._debug_reload()
-	require("lazy.core.loader").reload("spec-utils.nvim")
+function M.setup()
+  print "setup spec-utils"
 end
 
 return M
